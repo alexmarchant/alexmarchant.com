@@ -15,7 +15,7 @@ class AlexMarchantTwigExtensions extends \Twig_Extension
 
     public function getName(): string
     {
-        return 'Photoism';
+        return 'AlexMarchant';
     }
 
     public function getFunctions(): array
@@ -29,7 +29,7 @@ class AlexMarchantTwigExtensions extends \Twig_Extension
     public function resolveAssetPath($pathname): string
     {
         if (Craft::$app->getConfig()->getGeneral()->devMode) {
-            $baseUrl = 'http://localhost:8080/web/photoism/assets/';
+            $baseUrl = 'http://localhost:8080/web/assets/';
             $resolvedPath = $pathname;
         } else {
             $baseUrl = UrlHelper::siteUrl().'assets/';
@@ -63,7 +63,7 @@ class AlexMarchantTwigExtensions extends \Twig_Extension
 
     private function _getManifest(): array
     {
-        $manifest_path = CRAFT_BASE_PATH.'/web/photoism/assets/manifest.json';
+        $manifest_path = CRAFT_BASE_PATH.'/web/assets/manifest.json';
         $manifest_content = file_get_contents($manifest_path);
         return Json::decode($manifest_content, true);
     }

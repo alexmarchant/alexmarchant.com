@@ -8,6 +8,6 @@
   </rule>
   <file>./config</file>
   <file>./modules</file>
-  <exclude-pattern>./modules/photoism/assets/*</exclude-pattern>
+  <exclude-pattern>./modules/alexmarchant/assets/*</exclude-pattern>
   <exclude-pattern>*/node_modules/*</exclude-pattern>
 </ruleset>
