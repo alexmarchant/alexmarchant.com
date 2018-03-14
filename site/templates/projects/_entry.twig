@@ -1,0 +1,56 @@
+{% set title = entry.title %}
+
+{% extends '_layouts/site' %}
+
+{% block main %}
+  <div class="project">
+    <div class="project__header">
+      <h1>{{ entry.title }}</h1>
+      {% if entry.projectURL %}
+        <p class="project__url">
+          <a
+            href="{{ entry.projectURL }}"
+            target="_blank"
+          >
+            {{ entry.projectURL }}
+          </a>
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="project__gallery">
+      {% for block in entry.gallery.all() %}
+        {% switch block.type %}
+
+          {% case 'page' %}
+            <div class="project__page">
+              <div class="project__page-desktop">
+                <img src="{{ imgixURL(block.desktopImage.one().url, {w: 2240, auto: 'compress,format'}) }}" />
+              </div>
+              {% if block.mobileImage %}
+                <div class="project__page-mobile">
+                  <img src="{{ imgixURL(block.mobileImage.one().url, {w: 750, auto: 'compress,format'}) }}" />
+                </div>
+              {% endif %}
+            </div>
+
+          {% case 'image' %}
+            {% set image = block.image.one() %}
+
+            {% if image.getWidth() > image.getHeight() %}
+              {% set width = 990 %}
+            {% else %}
+              {% set width = 660 %}
+            {% endif %}
+
+            <div
+              class="project__image"
+              style="width: {{ width }}px;"
+            >
+              <img src="{{ imgixURL(image.url, {w: (width * 2), auto: 'compress,format'}) }}" />
+            </div>
+        {% endswitch %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+body {
+  @include font-body;
+  color: #000;
+  font-size: $sm-font-size;
+  line-height: $sm-line-height;
+
+  @media (min-width: $lg-min) {
+    font-size: $lg-font-size;
+    line-height: $lg-line-height;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-heading;
+}
+
+a {
+  @include font-heading;
+  border-bottom: 1px solid #000;
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  border-color: #000;
+  color: #000;
+}
+
+p,
+ol,
+ul {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+strong {
+  @include font-heading;
+}
+
+button {
+  @include font-body;
+}
+
+*:focus {
+  outline: none;
+}
+

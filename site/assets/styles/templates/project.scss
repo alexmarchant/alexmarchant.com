@@ -1,0 +1,50 @@
+.project__header {
+  width: 100%;
+  max-width: 710px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.project__header h1 {
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.project__url {
+  margin: 0;
+  font-size: 14px;
+}
+
+.project__url a {
+  @include font-body;
+}
+
+.project__page {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.project__image img,
+.project__page img {
+  display: block;
+  width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.project__page-desktop {
+  width: 1150px;
+}
+
+.project__page-mobile {
+  margin-left: 20px;
+  width: 375px;
+}
+
+.project__image {
+  margin: 20px auto;
+  max-width: 100%;
+}

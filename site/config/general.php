@@ -26,6 +26,9 @@ return [
 
     // Disallow control panel system modifications
     'allowUpdates' => false,
+
+    // 50M max upload size
+    'maxUploadFileSize' => 134217728,
   ],
 
   // Dev environment settings
@@ -34,10 +37,10 @@ return [
     'siteUrl' => 'http://alexmarchant.test',
 
     // Domain for imgix urls
-    'imgixDomain' => 'photoism-dev.imgix.net',
+    'imgixDomain' => 'alexmarchant-dev.imgix.net',
 
     // S3 Bucket
-    's3Bucket' => 'photoism-dev',
+    's3Bucket' => 'alexmarchant.com-development',
 
     // Dev Mode (see https://craftcms.com/support/dev-mode)
     'devMode' => true,
@@ -49,9 +52,9 @@ return [
     'siteUrl' => 'https://www.alexmarchant.com',
 
     // Domain for imgix urls
-    'imgixDomain' => 'photoism-production.imgix.net',
+    'imgixDomain' => 'alexmarchant-production.imgix.net',
 
     // S3 Bucket
-    's3Bucket' => 'photoism-production',
+    's3Bucket' => 'alexmarchant.com-production',
   ],
 ];
