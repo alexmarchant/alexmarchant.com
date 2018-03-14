@@ -1,0 +1,9 @@
+---
+- name: Install prerequisites
+  hosts: "{{ env }}"
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Install Python 2.x
+      raw: sudo apt-get install -qq -y python-simplejson
+

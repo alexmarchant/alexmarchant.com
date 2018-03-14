@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+	{% block head %}
+		<meta charset="utf-8">
+		<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ assetPath("favicon.ico") }}" />
+    {% if not craft.app.config.general.devMode %}
+      {# Webpack injects CSS through JS in dev mode #}
+      {% do view.registerCssFile(assetPath('styles/site.css')) %}
+    {% endif %}
+	{% endblock %}
+</head>
+<body>
+	{% block body %}{% endblock %}
+
+  {% do view.registerJsFile(
+    assetPath('scripts/site.js'),
+    {async: true}
+  ) %}
+</body>
+</html>

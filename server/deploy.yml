@@ -1,0 +1,7 @@
+---
+- name: Deploy
+  hosts: "{{ env }}"
+  remote_user: "{{ web_user }}"
+  roles:
+    - deploy
+

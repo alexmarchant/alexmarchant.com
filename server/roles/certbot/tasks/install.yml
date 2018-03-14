@@ -1,0 +1,16 @@
+---
+- name: Install prerequisites
+  apt: 
+    name: software-properties-common
+    update_cache: yes
+    state: latest
+
+- name: Add apt-repo
+  apt_repository: 
+    repo: 'ppa:certbot/certbot'
+
+- name: Install certbot
+  apt: 
+    name: python-certbot-nginx 
+    update_cache: yes
+    state: latest

@@ -1,0 +1,31 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": "airbnb",
+  "rules": {
+    "semi": ["error", "never"],
+    "no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true }],
+    "prefer-destructuring": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/no-array-index-key": "off",
+    "class-methods-use-this": "off",
+    "no-new": "off",
+    "no-alert": "off",
+    "no-debugger": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle": "off",
+    "react/forbid-prop-types": ["on", {"forbid": ["any", "array"]}],
+    "import/prefer-default-export": "off",
+    "react/no-multi-comp": "off",
+    "react/no-danger": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
+  }
+}

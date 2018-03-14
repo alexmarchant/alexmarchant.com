@@ -1,0 +1,7 @@
+---
+- name: Set cron task to autorenew certs
+  cron:
+    name: "certbot autorenew"
+    job: certbot renew --nginx
+    hour: 12
+    minute: 37

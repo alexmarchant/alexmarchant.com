@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+S3_API_KEY="{{ s3_api_key }}"
+S3_SECRET="{{ s3_secret }}"
+
+# Copy db
+dt=$(date "+%Y-%m-%dT%H:%M:%S");
+filepath="/tmp"
+filename="${dt}.sql.gz"
+pg_dump --dbname {{ db_name }} --host 127.0.0.1 --username {{ db_user }} | gzip > "${filepath}/${filename}"
+
+# Upload to s3
+aws_path="/"
+bucket='photoism-production-db-backups'
+date=$(date +"%a, %d %b %Y %T %z")
+content_type='application/sql'
+content_encoding='gzip'
+string="PUT\n\n$content_type\n$date\n/$bucket$aws_path$filename"
+signature=$(echo -en "${string}" | openssl sha1 -hmac "${S3_SECRET}" -binary | base64)
+curl -X PUT -T "$filepath/$filename" \
+  -H "Host: $bucket.s3.amazonaws.com" \
+  -H "Date: $date" \
+  -H "Content-Type: $content_type" \
+  -H "Content-Encoding: $content_encoding" \
+  -H "Authorization: AWS ${S3_API_KEY}:$signature" \
+  "https://$bucket.s3.amazonaws.com$aws_path$filename"
+
+# Delete tmp file
+rm "$filepath/$filename"

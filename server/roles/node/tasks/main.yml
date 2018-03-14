@@ -1,0 +1,15 @@
+---
+- name: Check if node has been installed (if we need to add repos again)
+  stat:
+    path: /usr/bin/node
+  register: node_check
+
+- name: Register node 8.x repos
+  shell: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  when: node_check.stat.exists == False
+
+- name: Install node
+  apt: 
+    name: nodejs
+    update_cache: yes
+    state: latest

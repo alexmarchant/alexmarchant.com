@@ -1,0 +1,16 @@
+---
+- name: Set ansible ssh user and sudo password
+  hosts: "{{ env }}"
+  gather_facts: false
+  tasks:
+    - name: Set ansible user
+      set_fact:
+        ansible_user: "{{ admin_user }}"
+
+    - name: Set ansible sudo pass
+      set_fact:
+        ansible_become_pass: "{{ admin_password }}"
+      when:
+        - ansible_user == admin_user 
+        - admin_password is defined
+      no_log: true

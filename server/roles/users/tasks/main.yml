@@ -1,0 +1,25 @@
+---
+- name: Create admin user
+  user:
+    name: "{{ admin_user }}"
+    password: "{{ admin_password | password_hash('sha512') }}"
+    groups: "sudo"
+    state: present
+    shell: /bin/bash
+    update_password: always
+
+- name: Create web user
+  user:
+    name: "{{ web_user }}"
+    groups: "www-data"
+    state: present
+    shell: /bin/bash
+
+- name: Add SSH keys
+  authorized_key:
+    user: "{{ item }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  with_items:
+    - "{{ admin_user }}"
+    - "{{ web_user }}"
+

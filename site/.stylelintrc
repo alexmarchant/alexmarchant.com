@@ -1,0 +1,15 @@
+{
+  "plugins": ["stylelint-scss"],
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z0-9\\-_]+$",
+      {
+        "message":
+        "Selector should follow BEM naming practices and be written in lowercase with hyphens or underscores (selector-class-pattern)"
+      }
+    ],
+    "scss/percent-placeholder-pattern": "^[a-z]+([a-z0-9-_]+[a-z0-9]+)?$",
+    "order/properties-alphabetical-order": null
+  }
+}

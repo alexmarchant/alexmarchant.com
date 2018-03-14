@@ -1,0 +1,31 @@
+// Fonts
+$font-family-montserrat: 'Montserrat', sans-serif;
+$font-family-amiko: 'Amiko', sans-serif;
+$font-family-scope-one: 'Scope One', serif;
+$font-family-heading: $font-family-montserrat;
+$font-family-body: $font-family-amiko;
+$font-family-base: $font-family-body;
+
+@mixin font-heading {
+  font-family: $font-family-heading;
+  font-weight: 600;
+}
+
+@mixin font-body {
+  font-family: $font-family-body;
+  font-weight: 400;
+}
+
+$sm-font-size: 18px;
+$lg-font-size: 20px;
+$sm-line-height: 1.6;
+$lg-line-height: 1.6;
+
+// Colors
+$light-gray: #393f39;
+$lighter-gray: #9c9c9c;
+$red: #ff5121;
+
+// Animations
+$bounce-timing: cubic-bezier(0.73, 0.32, 0.34, 1.5);
+$bounce-duration: 300ms;
