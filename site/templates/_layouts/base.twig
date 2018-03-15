@@ -16,7 +16,7 @@
 		<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:600|Source+Serif+Pro" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ assetPath("favicon.ico") }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ assetPath('images/favicon.ico') }}" />
     {% if not craft.app.config.general.devMode %}
       {# Webpack injects CSS through JS in dev mode #}
       {% do view.registerCssFile(assetPath('styles/site.css')) %}

@@ -5,6 +5,7 @@
 .landing__projects {
   max-width: 1030px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .landing__project {
@@ -15,11 +16,28 @@
   @include font-body;
   border: 0;
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
 }
 
 .landing__project-image,
 .landing__project-details {
-  width: 50%;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    width: 50%;
+  }
+}
+
+.landing__project-image {
+  margin-bottom: 10px;
+
+  @media (min-width: 600px) {
+    margin-bottom: 0;
+  }
 }
 
 .landing__project-image img {
@@ -30,16 +48,19 @@
 }
 
 .landing__project-details {
-  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (min-width: 600px) {
+    margin-left: 20px;
+  }
 }
 
 .landing__project-details h3 {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .landing__project-details p {
-  margin-top: 0;
+  margin: 0;
 }
