@@ -20,6 +20,10 @@
 
     <div class="project__gallery">
       {% for block in entry.gallery.all() %}
+        {% if not loop.first %}
+          <div class="project__gallery-sep"></div>
+        {% endif %}
+
         {% switch block.type %}
 
           {% case 'page' %}

@@ -1,15 +1,5 @@
 .project__header {
-  width: 100%;
-  max-width: 710px;
-  margin: 0 auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-.project__header h1 {
-  line-height: 1;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  @extend %page-header;
 }
 
 .project__url {

@@ -1,6 +1,15 @@
 {% extends "_layouts/site" %}
 
 {% block main %}
-  <p>Alex Marchant</p>
-  <p>Email: alexjmarchant@gmail.com</p>
+  <div class="landing">
+    <div class="landing__header">
+      <h1>Alex Marchant</h1>
+    </div>
+
+    <div class="landing__projects">
+      {% for project in craft.entries.section('projects').all() %}
+        {{ project.title }}
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

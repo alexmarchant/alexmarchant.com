@@ -4,6 +4,7 @@
 @import 'shared/global';
 @import 'shared/grid';
 @import 'shared/type';
+@import 'shared/placeholders';
 
 // Lib, helpers, etc...
 @import 'lib/yii-debug-toolbar';
@@ -11,4 +12,5 @@
 // Layouts
 
 // Templates
+@import 'templates/landing';
 @import 'templates/project';
