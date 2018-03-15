@@ -18,6 +18,10 @@
       {% endif %}
     </div>
 
+    <div class="project__details">
+      {{ entry.details }}
+    </div>
+
     <div class="project__gallery">
       {% for block in entry.gallery.all() %}
         {% if not loop.first %}
@@ -42,9 +46,9 @@
             {% set image = block.image.one() %}
 
             {% if image.getWidth() > image.getHeight() %}
-              {% set width = 990 %}
+              {% set width = 1030 %}
             {% else %}
-              {% set width = 660 %}
+              {% set width = 700 %}
             {% endif %}
 
             <div

@@ -29,7 +29,7 @@ class AlexMarchantTwigExtensions extends \Twig_Extension
     public function resolveAssetPath($pathname): string
     {
         if (Craft::$app->getConfig()->getGeneral()->devMode) {
-            $baseUrl = 'http://localhost:8080/web/assets/';
+            $baseUrl = 'http://localhost:8001/web/assets/';
             $resolvedPath = $pathname;
         } else {
             $baseUrl = UrlHelper::siteUrl().'assets/';

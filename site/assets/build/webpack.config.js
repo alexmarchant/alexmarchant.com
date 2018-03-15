@@ -47,7 +47,7 @@ const makeConfig = (paths) => ({
   ],
   devServer: {
     contentBase: paths.assetsDist,
-    port: 8080,
+    port: 8001,
     headers: {
       'Access-Control-Allow-Origin': '*',
     }

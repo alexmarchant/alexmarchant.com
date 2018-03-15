@@ -7,6 +7,13 @@
   font-size: 14px;
 }
 
+.project__details {
+  width: 100%;
+  max-width: 700px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
 .project__url a {
   @include font-body;
 }
@@ -26,6 +33,15 @@
   border-radius: 5px;
 }
 
+.project__page img {
+  cursor: zoom-in;
+}
+
+.mobile-active.project__page img,
+.desktop-active.project__page img {
+  cursor: zoom-out;
+}
+
 .project__page-desktop {
   width: 1150px;
 }
@@ -37,6 +53,10 @@
 .project__page-mobile {
   margin-left: 20px;
   width: 375px;
+}
+
+.mobile-active .project__page-mobile {
+  margin-left: 0;
 }
 
 .desktop-active .project__page-mobile {
