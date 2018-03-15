@@ -25,6 +25,7 @@
   display: flex;
   justify-content: center;
   margin: 20px 0;
+  padding: 0 20px;
 }
 
 .project__image img,
@@ -39,12 +40,21 @@
   width: 1150px;
 }
 
+.mobile-active .project__page-desktop {
+  display: none;
+}
+
 .project__page-mobile {
   margin-left: 20px;
   width: 375px;
 }
 
+.desktop-active .project__page-mobile {
+  display: none;
+}
+
 .project__image {
   margin: 20px auto;
   max-width: 100%;
+  padding: 0 20px;
 }

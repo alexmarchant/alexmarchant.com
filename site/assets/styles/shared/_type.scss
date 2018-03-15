@@ -1,13 +1,8 @@
 body {
   @include font-body;
   color: #000;
-  font-size: $sm-font-size;
-  line-height: $sm-line-height;
-
-  @media (min-width: $lg-min) {
-    font-size: $lg-font-size;
-    line-height: $lg-line-height;
-  }
+  font-size: $font-size;
+  line-height: $line-height;
 }
 
 h1,

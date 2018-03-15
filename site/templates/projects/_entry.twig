@@ -27,7 +27,7 @@
               <div class="project__page-desktop">
                 <img src="{{ imgixURL(block.desktopImage.one().url, {w: 2240, auto: 'compress,format'}) }}" />
               </div>
-              {% if block.mobileImage %}
+              {% if block.mobileImage.count() > 0 %}
                 <div class="project__page-mobile">
                   <img src="{{ imgixURL(block.mobileImage.one().url, {w: 750, auto: 'compress,format'}) }}" />
                 </div>
