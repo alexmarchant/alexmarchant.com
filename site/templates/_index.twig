@@ -11,7 +11,7 @@
         <div class="landing__project">
           <a href="{{ project.url }}">
             <div class="landing__project-image">
-              <img src="{{ project.previewImage.one().url }}">
+              <img src="{{ imgixURL(project.previewImage.one().url, {auto: 'format,compress'}) }}">
             </div>
             <div class="landing__project-details">
               <div class="landing__project-details-wrapper">
