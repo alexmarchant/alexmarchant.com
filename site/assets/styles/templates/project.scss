@@ -27,8 +27,9 @@
 .project__page {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 20px auto;
   padding: 0 20px;
+  max-width: 1030px;
 }
 
 .project__image img,
