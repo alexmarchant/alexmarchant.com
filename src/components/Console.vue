@@ -16,7 +16,7 @@
       Current role:
     </div>
     <div class="row">
-      - fullstack dev @ alpha: <a href="https://alphahq.com">https://alphahq.com</a>
+      - fullstack dev @ alpha: <a href="https://alphahq.com" target="_blank">https://alphahq.com</a>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
