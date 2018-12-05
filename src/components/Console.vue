@@ -17,7 +17,7 @@
         Current role:
       </div>
       <div class="row">
-        - fullstack dev @ alpha: <a href="https://alphahq.com" target="_blank">https://alphahq.com</a>
+        - fullstack @ alpha: <a href="https://alphahq.com" target="_blank">https://alphahq.com</a>
       </div>
       <div class="row">&nbsp;</div>
       <div class="row">
@@ -28,6 +28,9 @@
       </div>
       <div class="row">
         - mastin labs: <a href="https://www.mastinlabs.com" target="_blank">https://www.mastinlabs.com</a>
+      </div>
+      <div class="row">
+        - kramer: <a href="https://kramerdesigngroup.com/work/joe-fresh" target="_blank">https://kramerdesigngroup.com/work/joe-fresh</a>
       </div>
       <div class="row">
         - plug: <a href="https://www.plugformac.com" target="_blank">https://www.plugformac.com</a>
