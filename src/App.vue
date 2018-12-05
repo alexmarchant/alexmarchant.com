@@ -1,21 +1,29 @@
 <template>
-  <Console />
+  <console />
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import Console from './components/Console.vue'
 
-export default {
-  name: 'app',
+@Component({
   components: {
     Console
   }
-}
+})
+export default class App extends Vue {}
 </script>
 
-<style>
+<style land="scss">
 html, body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 </style>

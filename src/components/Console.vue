@@ -1,80 +1,108 @@
 <template>
-  <div class="console">
-    <div class="row">
-      Last login: Tue Dec  4 20:49:50 on ttys008
-    </div>
-    <div class="row">
-      &gt; ./alex_marchant_resume.sh
-    </div>
-    <div class="row">Loading...</div>
-    <div class="row">
-      <span class="green-background">Done</span>
-      <span class="green-text"> Loaded successfully in 8ms</span>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="indent">
-      <div class="row">
-        Current role:
-      </div>
-      <div class="row">
-        - fullstack @ alpha: <a href="https://alphahq.com" target="_blank">https://alphahq.com</a>
-      </div>
-      <div class="row">&nbsp;</div>
-      <div class="row">
-        Previous:
-      </div>
-      <div class="row">
-        - photoism: <a href="https://www.mastinlabs.com/photoism" target="_blank">https://www.mastinlabs.com/photoism</a>
-      </div>
-      <div class="row">
-        - mastin labs: <a href="https://www.mastinlabs.com" target="_blank">https://www.mastinlabs.com</a>
-      </div>
-      <div class="row">
-        - kramer: <a href="https://kramerdesigngroup.com/work/joe-fresh" target="_blank">https://kramerdesigngroup.com/work/joe-fresh</a>
-      </div>
-      <div class="row">
-        - plug: <a href="https://www.plugformac.com" target="_blank">https://www.plugformac.com</a>
-      </div>
-      <div class="row">
-        - tiled: <a href="https://www.tiled.co" target="_blank">https://www.tiled.co</a>
-      </div>
+  <div class="console" @click="$refs.input.focus()">
+    <div
+      v-for="(rowHtml, index) in terminal.output"
+      :key="index"
+      class="row"
+      v-html="rowHtml"
+    />
+    <div class="row input-row">
+      &gt;&nbsp;
+      <input
+        type="text"
+        ref="input"
+        v-model="terminal.input"
+        @keyup.enter="terminal.execute()"
+        @keyup.arrow-up="arrowUp"
+        @keyup.arrow-down="arrowDown"
+      />
     </div>
   </div>
 </template>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Terminal from '../lib/Terminal'
 
-a {
+@Component
+export default class Console extends Vue {
+  terminal = new Terminal()
+
+  arrowUp (event: KeyboardEvent) {
+    event.preventDefault()
+    this.terminal.loadPreviousCommand()
+  }
+
+  arrowDown (event: KeyboardEvent) {
+    event.preventDefault()
+    this.terminal.loadNextCommand()
+  }
+
+  mounted () {
+    this.terminal.input = 'cat work.html'
+    this.terminal.execute()
+  }
+}
+</script>
+
+<style lang="scss">
+.console a {
   color: var(--blue);
   text-decoration: none;
 }
 
-ul {
-  padding: 0;
+.console pre {
+  margin: 0;
+  font-family: inherit;
 }
+</style>
 
-li {
-  list-style-type: none;
-}
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 .console {
-	--green: #b2df53;
-	--blue: #82d7ec;
-	--grey: #222222;
-	--off-white: #cfcfc1;
+  --green: #b2df53;
+  --blue: #82d7ec;
+  --grey: #222222;
+  --off-white: #cfcfc1;
 
-	font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   background-color: var(--grey);
   color: var(--off-white);
-	font-size: 12px;
+  font-size: 12px;
   height: 100vh;
   overflow: hidden;
   line-height: 1.4;
+  cursor: text;
+  padding: 0.5em;
+}
+
+input {
+  background: transparent;
+  border: 0;
+  color: var(--off-white);
+  line-height: 1.4;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  padding: 0;
+  width: 100%;
+}
+
+input::before {
+  content: '>';
+  color: var(--off-white);
+}
+
+input:focus {
+  outline: none;
 }
 
 .row {
   margin: 3px 0;
+}
+
+.input-row {
+  display: flex;
 }
 
 .indent {
@@ -82,13 +110,13 @@ li {
 }
 
 .green-background {
-	background-color: var(--green);
-	color: var(--grey);
-	text-transform: uppercase;
-	padding: .1em .5em;
+  background-color: var(--green);
+  color: var(--grey);
+  text-transform: uppercase;
+  padding: .1em .5em;
 }
 
 .green-text {
-	color: var(--green);
+  color: var(--green);
 }
 </style>
