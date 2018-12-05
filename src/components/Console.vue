@@ -40,8 +40,12 @@ export default class Console extends Vue {
 
   mounted () {
     (this.$refs.input as HTMLInputElement).focus()
-    this.terminal.input = 'cat work.html'
+    this.terminal.input = 'cat contact.html'
     this.terminal.execute()
+      .then(() => {
+        this.terminal.input = 'cat work.html'
+        this.terminal.execute()
+      })
   }
 }
 </script>
