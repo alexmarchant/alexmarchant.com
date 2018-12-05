@@ -12,27 +12,29 @@
       <span class="green-text"> Loaded successfully in 8ms</span>
     </div>
     <div class="row">&nbsp;</div>
-    <div class="row">
-      Current role:
-    </div>
-    <div class="row">
-      - fullstack dev @ alpha: <a href="https://alphahq.com" target="_blank">https://alphahq.com</a>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      Previous:
-    </div>
-    <div class="row">
-      - photoism: <a href="https://www.mastinlabs.com/photoism" target="_blank">https://www.mastinlabs.com/photoism</a>
-    </div>
-    <div class="row">
-      - mastin labs: <a href="https://www.mastinlabs.com" target="_blank">https://www.mastinlabs.com</a>
-    </div>
-    <div class="row">
-      - plug: <a href="https://www.plugformac.com" target="_blank">https://www.plugformac.com</a>
-    </div>
-    <div class="row">
-      - tiled: <a href="https://www.tiled.co" target="_blank">https://www.tiled.co</a>
+    <div class="indent">
+      <div class="row">
+        Current role:
+      </div>
+      <div class="row">
+        - fullstack dev @ alpha: <a href="https://alphahq.com" target="_blank">https://alphahq.com</a>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        Previous:
+      </div>
+      <div class="row">
+        - photoism: <a href="https://www.mastinlabs.com/photoism" target="_blank">https://www.mastinlabs.com/photoism</a>
+      </div>
+      <div class="row">
+        - mastin labs: <a href="https://www.mastinlabs.com" target="_blank">https://www.mastinlabs.com</a>
+      </div>
+      <div class="row">
+        - plug: <a href="https://www.plugformac.com" target="_blank">https://www.plugformac.com</a>
+      </div>
+      <div class="row">
+        - tiled: <a href="https://www.tiled.co" target="_blank">https://www.tiled.co</a>
+      </div>
     </div>
   </div>
 </template>
@@ -70,6 +72,10 @@ li {
 
 .row {
   margin: 3px 0;
+}
+
+.indent {
+  margin-left: 1.5em;
 }
 
 .green-background {
