@@ -1,7 +1,0 @@
-shared_folders:
-  - path: "{{ repo_subtree_path }}/storage/backups"
-    src: backups
-  - path: "{{ repo_subtree_path }}/storage/logs"
-    src: logs
-  - path: "{{ repo_subtree_path }}/storage/runtime"
-    src: runtime

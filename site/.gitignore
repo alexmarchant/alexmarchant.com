@@ -1,7 +1,0 @@
-.env
-vendor/
-web/alexmarchant/assets/
-node_modules/
-npm-debug.log
-modules/alexmarchant/assets/dist/
-!.gitkeep
