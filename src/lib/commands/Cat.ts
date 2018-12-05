@@ -22,7 +22,6 @@ export default class Cat extends Command {
     }
 
     const content = await FS.getFile(fileName)
-    const wrappedContent = `<pre>${content}</pre>`
-    terminal.print(wrappedContent)
+    terminal.print(content)
   }
 }

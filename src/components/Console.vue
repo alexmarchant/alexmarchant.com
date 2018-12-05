@@ -39,6 +39,7 @@ export default class Console extends Vue {
   }
 
   mounted () {
+    this.$refs.input.focus()
     this.terminal.input = 'cat work.html'
     this.terminal.execute()
   }
@@ -54,6 +55,26 @@ export default class Console extends Vue {
 .console pre {
   margin: 0;
   font-family: inherit;
+}
+
+.console ul {
+  margin: 0;
+  padding-left: 1.5em;
+  list-style-type: none;
+}
+
+.console .green-background {
+  background-color: var(--green);
+  color: var(--grey);
+  text-transform: uppercase;
+  padding: 0 .5em;
+  padding-bottom: .17em;
+  margin-bottom: .17em;
+  display: inline-block;
+}
+
+.console .green-text {
+  color: var(--green);
 }
 </style>
 
@@ -107,16 +128,5 @@ input:focus {
 
 .indent {
   margin-left: 1.5em;
-}
-
-.green-background {
-  background-color: var(--green);
-  color: var(--grey);
-  text-transform: uppercase;
-  padding: .1em .5em;
-}
-
-.green-text {
-  color: var(--green);
 }
 </style>
