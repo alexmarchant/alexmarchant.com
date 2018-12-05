@@ -4,7 +4,7 @@
       Last login: Tue Dec  4 20:49:50 on ttys008
     </div>
     <div class="row">
-      &gt; ./alexmarchant-resume.sh
+      &gt; ./alex_marchant_resume.sh
     </div>
     <div class="row">Loading...</div>
     <div class="row">
