@@ -11,6 +11,7 @@
       <input
         type="text"
         ref="input"
+        spellcheck="false"
         v-model="terminal.input"
         @keyup.enter="terminal.execute()"
         @keyup.arrow-up="arrowUp"

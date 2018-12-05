@@ -1,6 +1,7 @@
 import Command from './Command'
 import Cat from './commands/Cat'
 import LS from './commands/LS'
+import Cowsay from './commands/Cowsay'
 import * as FS from './FS'
 
 export default class Terminal {
@@ -14,7 +15,8 @@ export default class Terminal {
 
   commands: Array<Command> = [
     new Cat(),
-    new LS()
+    new LS(),
+    new Cowsay()
   ]
 
   async execute () {
