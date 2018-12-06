@@ -6,8 +6,7 @@ export default class Cat extends Command {
   name = 'cat'
 
   execute (terminal: Terminal) {
-    const parts = terminal.input.split(' ')
-    const path = parts[1]
+    const path = terminal.args()[1]
 
     if (!path) {
       terminal.print('cat: No such file or directory')

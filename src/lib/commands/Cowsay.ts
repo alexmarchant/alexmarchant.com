@@ -6,8 +6,7 @@ export default class Cowsay extends Command {
   name = 'cowsay'
 
   execute (terminal: Terminal) {
-    const parts = terminal.input.split(' ')
-    const text = parts.slice(1, parts.length).join(' ')
+    const text = terminal.args().slice(1).join(' ')
     const output = cowsay.say({ text })
     terminal.print(`<pre>${output}</pre>`)
   }

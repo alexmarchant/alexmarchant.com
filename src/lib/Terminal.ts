@@ -6,15 +6,12 @@ import workHTML from '../assets/work.html'
 
 export default class Terminal {
   public input = ''
-  public output: Array<string> = [
-    'Last login: Tue Dec  4 20:49:50 on ttys008'
-  ]
+  public output: Array<string> = []
   public loading = true
   public fs = new FS()
 
   commandHistory: Array<string> = []
   currentCommandHistoryIndex?: number
-  commands: Array<Command> = commands
 
   constructor () {
     this.setupFS()
@@ -24,22 +21,20 @@ export default class Terminal {
     delete this.currentCommandHistoryIndex
     this.print(`> ${this.input}`)
 
-    const parts = this.input.split(' ')
-    const commandName = parts[0]
-
-    if (!commandName) {
+    const commandArg = this.args()[0]
+    if (!commandArg) {
       this.print('')
       return
     }
 
-    const command = this.commands.find(command => {
-      return command.name === commandName
+    const command = commands.find(command => {
+      return command.name === commandArg
     })
 
     if (command) {
       command.execute(this)
     } else {
-      this.print(`zsh: command not found: ${commandName}`)
+      this.print(`zsh: command not found: ${commandArg}`)
     }
 
     this.commandHistory.push(this.input)
@@ -86,6 +81,10 @@ export default class Terminal {
     if (nextCommand) {
       this.input = nextCommand
     }
+  }
+
+  args (): Array<string> {
+    return this.input.split(' ')
   }
 
   private setupFS () {

@@ -6,8 +6,7 @@ export default class Ls extends Command {
   name = 'cd'
 
   execute (terminal: Terminal) {
-    const parts = terminal.input.split(' ')
-    const path = parts[1]
+    const path = terminal.args()[1]
 
     if (!path) {
       terminal.print(`cd: no such file or directory`)

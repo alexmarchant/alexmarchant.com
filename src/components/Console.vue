@@ -42,6 +42,7 @@ export default class Console extends Vue {
   mounted () {
     (this.$refs.input as HTMLInputElement).focus()
 
+    this.terminal.print('Last login: Tue Dec  4 20:49:50 on ttys008')
     this.terminal.input = 'cat contact.html'
     this.terminal.execute()
     this.terminal.input = 'cat work.html'

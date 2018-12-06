@@ -6,8 +6,7 @@ export default class Ls extends Command {
   name = 'ls'
 
   execute (terminal: Terminal) {
-    const parts = terminal.input.split(' ')
-    const path = parts[1]
+    const path = terminal.args()[1]
     let node: Node | undefined
 
     if (path) {
