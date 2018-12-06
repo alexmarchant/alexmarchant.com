@@ -1,27 +1,30 @@
 import Command from '../Command'
 import Terminal from '../Terminal'
-import * as FS from '../FS'
+import { Dir, File } from '../FS'
 
 export default class Cat extends Command {
   name = 'cat'
 
-  async execute (terminal: Terminal) {
+  execute (terminal: Terminal) {
     const parts = terminal.input.split(' ')
-    const fileName = parts[1]
+    const path = parts[1]
 
-    if (!fileName) {
+    if (!path) {
       terminal.print('cat: No such file or directory')
       return
     }
 
-    const fileIndex = await FS.index()
-
-    if (!(<any>fileIndex)[fileName]) {
-      terminal.print(`cat: ${fileName}: No such file or directory`)
+    const node = terminal.fs.nodeAtPath(path)
+    if (!node) {
+      terminal.print(`cat: ${path}: No such file or directory`)
       return
     }
 
-    const content = await FS.getFile(fileName)
-    terminal.print(content)
+    if (node instanceof Dir) {
+      terminal.print(`cat: ${path}: Is a directory`)
+      return
+    }
+
+    terminal.print((node as File).contents)
   }
 }
