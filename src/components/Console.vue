@@ -41,6 +41,7 @@ export default class Console extends Vue {
 
   mounted () {
     (this.$refs.input as HTMLInputElement).focus()
+
     this.terminal.input = 'cat contact.html'
     this.terminal.execute()
     this.terminal.input = 'cat work.html'
@@ -50,6 +51,17 @@ export default class Console extends Vue {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+body {
+  --green: #b2df53;
+  --blue: #82d7ec;
+  --grey: #222222;
+  --off-white: #cfcfc1;
+
+  background-color: var(--grey);
+}
+
 .console a {
   color: var(--blue);
   text-decoration: none;
@@ -82,23 +94,18 @@ export default class Console extends Vue {
 </style>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
-
 .console {
-  --green: #b2df53;
-  --blue: #82d7ec;
-  --grey: #222222;
-  --off-white: #cfcfc1;
-
   font-family: 'Roboto Mono', monospace;
-  background-color: var(--grey);
   color: var(--off-white);
   font-size: 12px;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   line-height: 1.4;
   cursor: text;
   padding: 0.5em;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 input {

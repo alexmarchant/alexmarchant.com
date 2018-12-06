@@ -50,6 +50,10 @@ export default class Terminal {
     this.output.push(statement)
   }
 
+  clear () {
+    this.output = []
+  }
+
   loadPreviousCommand () {
     if (!this.currentCommandHistoryIndex) {
       this.currentCommandHistoryIndex = this.commandHistory.length
