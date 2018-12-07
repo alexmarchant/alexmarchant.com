@@ -1,10 +1,10 @@
 import Command from '../Command'
-import Terminal from '../Terminal'
+import Shell from '../Shell'
 
 export default class Clear extends Command {
   name = 'clear'
 
-  execute (terminal: Terminal) {
-    terminal.clear()
+  execute (shell: Shell) {
+    shell.clear()
   }
 }

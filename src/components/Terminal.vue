@@ -1,7 +1,7 @@
 <template>
   <div class="console" @click="$refs.input.focus()">
     <div
-      v-for="(rowHtml, index) in terminal.output"
+      v-for="(rowHtml, index) in shell.output"
       :key="index"
       class="row"
       v-html="rowHtml"
@@ -12,8 +12,8 @@
         type="text"
         ref="input"
         spellcheck="false"
-        v-model="terminal.input"
-        @keyup.enter="terminal.execute()"
+        v-model="shell.input"
+        @keyup.enter="shell.execute()"
         @keyup.arrow-up="arrowUp"
         @keyup.arrow-down="arrowDown"
       />
@@ -23,30 +23,30 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Terminal from '../lib/Terminal'
+import Shell from '../lib/Shell'
 
 @Component
-export default class Console extends Vue {
-  terminal = new Terminal()
+export default class Terminal extends Vue {
+  shell = new Shell()
 
   arrowUp (event: KeyboardEvent) {
     event.preventDefault()
-    this.terminal.loadPreviousCommand()
+    this.shell.loadPreviousCommand()
   }
 
   arrowDown (event: KeyboardEvent) {
     event.preventDefault()
-    this.terminal.loadNextCommand()
+    this.shell.loadNextCommand()
   }
 
   mounted () {
     (this.$refs.input as HTMLInputElement).focus()
 
-    this.terminal.print('Last login: Tue Dec  4 20:49:50 on ttys008')
-    this.terminal.input = 'cat contact.html'
-    this.terminal.execute()
-    this.terminal.input = 'cat work.html'
-    this.terminal.execute()
+    this.shell.print('Last login: Tue Dec  4 20:49:50 on ttys008')
+    this.shell.input = 'cat contact.html'
+    this.shell.execute()
+    this.shell.input = 'cat work.html'
+    this.shell.execute()
   }
 }
 </script>

@@ -1,6 +1,6 @@
-import Terminal from './Terminal'
+import Shell from './Shell'
 
 export default abstract class Command {
   public abstract name: string
-  public abstract execute(terminal: Terminal): void
+  public abstract execute(shell: Shell): void
 }

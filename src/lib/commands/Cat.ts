@@ -1,29 +1,29 @@
 import Command from '../Command'
-import Terminal from '../Terminal'
+import Shell from '../Shell'
 import { Dir, File } from '../FS'
 
 export default class Cat extends Command {
   name = 'cat'
 
-  execute (terminal: Terminal) {
-    const path = terminal.args()[1]
+  execute (shell: Shell) {
+    const path = shell.args()[1]
 
     if (!path) {
-      terminal.print('cat: No such file or directory')
+      shell.print('cat: No such file or directory')
       return
     }
 
-    const node = terminal.fs.nodeAtPath(path)
+    const node = shell.fs.nodeAtPath(path)
     if (!node) {
-      terminal.print(`cat: ${path}: No such file or directory`)
+      shell.print(`cat: ${path}: No such file or directory`)
       return
     }
 
     if (node instanceof Dir) {
-      terminal.print(`cat: ${path}: Is a directory`)
+      shell.print(`cat: ${path}: Is a directory`)
       return
     }
 
-    terminal.print((node as File).contents)
+    shell.print((node as File).contents)
   }
 }

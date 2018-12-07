@@ -4,7 +4,7 @@ import FS, { Dir, File } from './FS'
 import contactHTML from '../assets/contact.html'
 import workHTML from '../assets/work.html'
 
-export default class Terminal {
+export default class Shell {
   public input = ''
   public output: Array<string> = []
   public loading = true
@@ -24,6 +24,7 @@ export default class Terminal {
     const commandArg = this.args()[0]
     if (!commandArg) {
       this.print('')
+      this.resetInput()
       return
     }
 
@@ -37,8 +38,7 @@ export default class Terminal {
       this.print(`zsh: command not found: ${commandArg}`)
     }
 
-    this.commandHistory.push(this.input)
-    this.input = ''
+    this.resetInput()
   }
 
   print (statement: string) {
@@ -87,23 +87,24 @@ export default class Terminal {
     return this.input.split(' ')
   }
 
+  private resetInput () {
+    this.commandHistory.push(this.input)
+    this.input = ''
+  }
+
   private setupFS () {
-    const binDir = new Dir()
+    const home = new Dir('home')
+    this.fs.rootDir.addChild(home)
+    const alex = new Dir('alex')
+    home.addChild(alex)
+    alex.addChild(new File('contact.html', contactHTML))
+    alex.addChild(new File('work.html', workHTML))
+    const bin = new Dir('bin')
+    this.fs.rootDir.addChild(bin)
     commands.forEach(command => {
-      binDir.children[command.name] = new File('')
+      bin.addChild(new File(command.name, ''))
     })
 
-    this.fs.rootDir.children = {
-      home: new Dir({
-        alex: new Dir({
-          'contact.html': new File(contactHTML),
-          'work.html': new File(workHTML)
-        })
-      }),
-      bin: binDir
-    }
-
-    const alex = this.fs.nodeAtPath('/home/alex')! as Dir
     this.fs.workingDir = alex
     this.fs.homeDir = alex
   }

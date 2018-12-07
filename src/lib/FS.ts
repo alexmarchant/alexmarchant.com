@@ -1,21 +1,44 @@
 import commands from './commands'
 
-export type Node = File | Dir
 export type Tree = { [key: string]: Node }
 
-export class File {
-  contents: string
+export abstract class Node {
+  abstract parent?: Node
+  abstract name: string
+}
 
-  constructor (contents: string) {
+export class File extends Node {
+  contents: string
+  parent?: Node
+  name: string
+
+  constructor (name: string, contents: string, parent?: Node) {
+    super()
+    this.name = name
     this.contents = contents
+    this.parent = parent
   }
 }
 
-export class Dir {
-  children: Tree
+export class Dir extends Node {
+  children: Array<Node>
+  parent?: Node
+  name: string
 
-  constructor (children: Tree = {}) {
+  constructor (name: string, children: Array<Node> = [], parent?: Node) {
+    super()
+    this.name = name
     this.children = children
+    this.parent = parent
+  }
+
+  addChild (node: Node) {
+    this.children.push(node)
+    node.parent = this
+  }
+
+  getChildByName (name: string): Node | undefined {
+    return this.children.find(child => child.name === name)
   }
 }
 
@@ -25,7 +48,7 @@ export default class FS {
   public homeDir: Dir
 
   constructor () {
-    this.rootDir = new Dir()
+    this.rootDir = new Dir('/')
     this.workingDir = this.rootDir
     this.homeDir = this.rootDir
   }
@@ -53,35 +76,20 @@ export default class FS {
         node = undefined
         return
       }
-      node = (node as Dir).children[part]
+      node = (node as Dir).getChildByName(part)
     })
 
     return node
   }
 
   pathForNode (node: Node): string | undefined {
-    const index = this.nodeIndex()
-    return Object.keys(index).find(path => {
-      return index[path] === node
-    })
-  }
-
-  private nodeIndex () {
-    const index: Tree = {}
-
-    function mapNode (node: Node, path: string) {
-      index[path] = node
-
-      if (node instanceof Dir) {
-        Object.keys(node.children).forEach(key => {
-          const childPath = path === '/' ? '' : path
-          mapNode(node.children[key], `${childPath}/${key}`)
-        })
-      }
+    function buildPath (node: Node, parts: Array<string> = []): Array<string> {
+      console.log(node, parts)
+      parts.unshift(node.name)
+      if (!node.parent) { return parts }
+      return buildPath(node.parent, parts)
     }
 
-    mapNode(this.rootDir, '/')
-
-    return index
+    return buildPath(node).join('/').replace('//', '/')
   }
 }

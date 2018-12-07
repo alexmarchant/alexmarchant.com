@@ -1,14 +1,14 @@
 <template>
-  <console />
+  <terminal />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Console from './components/Console.vue'
+import Terminal from './components/Terminal.vue'
 
 @Component({
   components: {
-    Console
+    Terminal
   }
 })
 export default class App extends Vue {}

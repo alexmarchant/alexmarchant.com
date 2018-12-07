@@ -1,17 +1,17 @@
 import Command from '../Command'
-import Terminal from '../Terminal'
+import Shell from '../Shell'
 
 export default class Pwd extends Command {
   name = 'pwd'
 
-  execute (terminal: Terminal) {
-    const path = terminal.fs.pathForNode(terminal.fs.workingDir)
+  execute (shell: Shell) {
+    const path = shell.fs.pathForNode(shell.fs.workingDir)
 
     if (!path) {
-      terminal.print(`pwd: No working directory found`)
+      shell.print(`pwd: No working directory found`)
       return
     }
 
-    terminal.print(path)
+    shell.print(path)
   }
 }

@@ -1,29 +1,29 @@
 import Command from '../Command'
-import Terminal from '../Terminal'
+import Shell from '../Shell'
 import { Node, Dir, File } from '../FS'
 
 export default class Ls extends Command {
   name = 'cd'
 
-  execute (terminal: Terminal) {
-    const path = terminal.args()[1]
+  execute (shell: Shell) {
+    const path = shell.args()[1]
 
     if (!path) {
-      terminal.print(`cd: no such file or directory`)
+      shell.print(`cd: no such file or directory`)
       return
     }
 
-    const node = terminal.fs.nodeAtPath(path)
+    const node = shell.fs.nodeAtPath(path)
     if (!node) {
-      terminal.print(`cd: ${path}: No such file or directory`)
+      shell.print(`cd: ${path}: No such file or directory`)
       return
     }
 
     if (node instanceof File) {
-      terminal.print(`cd: not a directory: ${path}`)
+      shell.print(`cd: not a directory: ${path}`)
       return
     }
 
-    terminal.fs.workingDir = node
+    shell.fs.workingDir = node as Dir
   }
 }
