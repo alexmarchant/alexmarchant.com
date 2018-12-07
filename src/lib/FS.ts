@@ -84,7 +84,6 @@ export default class FS {
 
   pathForNode (node: Node): string | undefined {
     function buildPath (node: Node, parts: Array<string> = []): Array<string> {
-      console.log(node, parts)
       parts.unshift(node.name)
       if (!node.parent) { return parts }
       return buildPath(node.parent, parts)
