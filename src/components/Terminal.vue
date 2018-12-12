@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { format } from 'date-fns'
 import Shell from '../lib/Shell'
 
 @Component
@@ -42,7 +43,8 @@ export default class Terminal extends Vue {
   mounted () {
     (this.$refs.input as HTMLInputElement).focus()
 
-    this.shell.print('Last login: Tue Dec  4 20:49:50 on ttys008')
+    const formattedDate = format(new Date(), 'ddd MMM D HH:mm:ss')
+    this.shell.print(`Last login: ${formattedDate} on ttys008`)
     this.shell.input = 'cat contact.html'
     this.shell.execute()
     this.shell.input = 'cat work.html'
@@ -53,6 +55,10 @@ export default class Terminal extends Vue {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+html, body {
+  height: 100%;
+}
 
 body {
   --green: #b2df53;
@@ -99,7 +105,7 @@ body {
   font-family: 'Roboto Mono', monospace;
   color: var(--off-white);
   font-size: 12px;
-  min-height: 100vh;
+  min-height: 100%;
   overflow: hidden;
   line-height: 1.4;
   cursor: text;
