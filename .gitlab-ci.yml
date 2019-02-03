@@ -43,4 +43,4 @@ build:
 release:
   stage: release
   script:
-    - kubectl --kubeconfig="kubeconfig.yml" patch deployment alexmarchant -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
+    - kubectl --kubeconfig="kubeconfig.yml" patch deployment alexmarchant.com -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"
