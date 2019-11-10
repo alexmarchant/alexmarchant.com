@@ -1,0 +1,8 @@
+\033[0;92mCurrent:\033[0m
+\n- fullstack @ alpha: \033[96mhttps://alphahq.com\033[0m
+\n\033[0;92mPrevious:\033[0m
+\n- photoism: \033[96mhttps://www.mastinlabs.com/photoism\033[0m
+\n- mastin labs: \033[96mhttps://www.mastinlabs.com\033[0m
+\n- kramer: \033[96mhttps://kramerdesigngroup.com/work/joe-fresh\033[0m
+\n- plug: \033[96mhttps://www.plugformac.com\033[0m
+\n- tiled: \033[96mhttps://www.tiled.co\033[0m

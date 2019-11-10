@@ -8,17 +8,31 @@ services:
     volumes:
       - "./client:/usr/src/app"
       - "/usr/src/app/node_modules"
-    depends_on:
-      - server
-    stdin_open: true
-    tty: true
-##################################################################
-  server:
-    build: ./server
+    networks:
+      - internet
+
+  proxy:
+    build: ./proxy
     ports:
-      - "8080:8080"
+      - "3001:80"
+    networks:
+      - internet
+      - no-internet
+
+  sandbox:
+    build: ./sandbox
+    ports:
+      - "3002:3002"
     volumes:
-      - "./server:/usr/src/app"
+      - "./sandbox:/usr/src/app"
       - "/usr/src/app/node_modules"
-    stdin_open: true
-    tty: true
+    networks:
+      - no-internet
+    read_only: true
+
+networks:
+  no-internet:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge

@@ -5,8 +5,8 @@ import * as ws from 'ws'
 import * as cors from 'cors'
 
 var app = express() as unknown as expressWs.Application
-app.use(cors())
 expressWs(app)
+app.use(cors())
 
 var terminals: { [key: string]: pty.IPty } = {}
 var logs: { [key: string]: string } = {}
@@ -14,16 +14,16 @@ var logs: { [key: string]: string } = {}
 app.post('/terminals', (req, res) => {
   const env = Object.assign({}, process.env)
   env['COLORTERM'] = 'truecolor'
-  var cols = parseInt(req.query.cols),
-      rows = parseInt(req.query.rows),
-      term = pty.spawn('bash', [], {
-        name: 'xterm-256color',
-        cols: cols || 80,
-        rows: rows || 24,
-        cwd: env.PWD,
-        env: env,
-        encoding: null
-      })
+  const cols = parseInt(req.query.cols, 10)
+  const rows = parseInt(req.query.rows, 10)
+  const term = pty.spawn('/bin/zsh', [], {
+    name: 'xterm-256color',
+    cols: cols || 80,
+    rows: rows || 24,
+    cwd: '/home/stranger',
+    env: env,
+    encoding: null
+  })
 
   console.log('Created terminal with PID: ' + term.pid)
   terminals[term.pid] = term
@@ -90,5 +90,5 @@ app.ws('/terminals/:pid', function (ws, req) {
   })
 })
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3002
 app.listen(port, () => console.log('App listening to http://localhost:' + port))
