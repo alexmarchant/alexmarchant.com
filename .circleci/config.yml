@@ -1,0 +1,33 @@
+# version: 2
+# jobs:
+#   build:
+#     machine: true
+#     steps:
+#       - checkout
+
+#       # login with credentials stored in the UI
+#       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+#       # build the application images
+#       - run: cd client && docker build -t alexmarchant/alexmarchant-client:$CIRCLE_BUILD_NUM .
+#       - run: cd proxy && docker build -t alexmarchant/alexmarchant-proxy:$CIRCLE_BUILD_NUM .
+#       - run: cd sandbox && docker build -t alexmarchant/alexmarchant-sandbox:$CIRCLE_BUILD_NUM .
+
+#       # deploy the images
+#       - run: docker push alexmarchant/oscars-2019-spa:latest
+
+#       # install kubectl
+#       - run: |
+#           sudo apt-get update && sudo apt-get install -y apt-transport-https
+#           curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+#           echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+#           sudo apt-get update
+#           sudo apt-get install -y kubectl
+#       # spit kubeconfig out to a file
+#       - run: echo "${KUBECONFIG}" | base64 --decode >> kubeconfig.yml
+
+#       # tell kubernetes to pull latest image
+#       - run: |
+#           kubectl --kubeconfig="kubeconfig.yml" set image deployment/alexmarchant-client my-app=alexmarchant/alexmarchant-client:$CIRCLE_BUILD_NUM
+#           kubectl --kubeconfig="kubeconfig.yml" set image deployment/alexmarchant-proxy my-app=alexmarchant/alexmarchant-proxy:$CIRCLE_BUILD_NUM
+#           kubectl --kubeconfig="kubeconfig.yml" set image deployment/alexmarchant-sandbox my-app=alexmarchant/alexmarchant-sandbox:$CIRCLE_BUILD_NUM

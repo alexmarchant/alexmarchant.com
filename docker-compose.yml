@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  client:
+  alexmarchant-client:
     build: ./client
     ports:
       - "3000:3000"
@@ -11,7 +11,7 @@ services:
     networks:
       - internet
 
-  proxy:
+  alexmarchant-proxy:
     build: ./proxy
     ports:
       - "3001:80"
@@ -19,7 +19,7 @@ services:
       - internet
       - no-internet
 
-  sandbox:
+  alexmarchant-sandbox:
     build: ./sandbox
     ports:
       - "3002:3002"
