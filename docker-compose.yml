@@ -8,16 +8,6 @@ services:
     volumes:
       - "./client:/usr/src/app"
       - "/usr/src/app/node_modules"
-    networks:
-      - internet
-
-  alexmarchant-proxy:
-    build: ./proxy
-    ports:
-      - "3001:80"
-    networks:
-      - internet
-      - no-internet
 
   alexmarchant-sandbox:
     build: ./sandbox
@@ -26,13 +16,3 @@ services:
     volumes:
       - "./sandbox:/usr/src/app"
       - "/usr/src/app/node_modules"
-    networks:
-      - no-internet
-    read_only: true
-
-networks:
-  no-internet:
-    driver: bridge
-    internal: true
-  internet:
-    driver: bridge
