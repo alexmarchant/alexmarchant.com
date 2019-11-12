@@ -2,7 +2,9 @@ version: "3"
 
 services:
   alexmarchant-client:
+    image: alexmarchant/alexmarchant-client
     build: ./client
+    command: npm start
     ports:
       - "3000:3000"
     volumes:
@@ -10,7 +12,9 @@ services:
       - "/usr/src/app/node_modules"
 
   alexmarchant-sandbox:
+    image: alexmarchant/alexmarchant-sandbox
     build: ./sandbox
+    command: npm start
     ports:
       - "3002:3002"
     volumes:

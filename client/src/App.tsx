@@ -3,12 +3,10 @@ import './App.css'
 import 'xterm/css/xterm.css'
 import { Terminal } from 'xterm'
 import { AttachAddon } from 'xterm-addon-attach'
-// import { FitAddon } from 'xterm-addon-fit'
+import { FitAddon } from 'xterm-addon-fit'
 
-const host = 'api.alexmarchant.com'
-const wsBase = `wss://${host}`
-const httpBase = `https://${host}`
-
+const HTTP_BASE = document.location.href.includes('localhost') ? 'http://localhost:3002' : 'https://api.alexmarchant.com'
+const WS_BASE = HTTP_BASE.replace('http', 'ws')
 
 export default class App extends React.Component<{}, {}> {
   terminalElement: React.RefObject<HTMLDivElement>
@@ -48,18 +46,19 @@ export default class App extends React.Component<{}, {}> {
       fontSize: 12,
       fontFamily: 'Roboto Mono, monospace'
     })
-    // const fitAddon = new FitAddon()
-    const url = `${wsBase}/terminals/${pid}`
+    const fitAddon = new FitAddon()
+    const url = `${WS_BASE}/terminals/${pid}`
     const socket = new WebSocket(url)
     const attachAddon = new AttachAddon(socket)
-    // terminal.loadAddon(fitAddon)
+    terminal.loadAddon(fitAddon)
     terminal.loadAddon(attachAddon)
     terminal.open(this.terminalElement.current!)
     terminal.focus()
+    fitAddon.fit()
   }
 
   async createTerminal(): Promise<string> {
-    const res = await fetch(`${httpBase}/terminals`, { method: 'POST' })
+    const res = await fetch(`${HTTP_BASE}/terminals`, { method: 'POST' })
     return res.text()
   }
 
