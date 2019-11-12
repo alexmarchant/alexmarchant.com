@@ -11,6 +11,11 @@ const WS_BASE = HTTP_BASE.replace('http', 'ws')
 
 export default class App extends React.Component<{}, {}> {
   terminalElement: React.RefObject<HTMLDivElement>
+  fitAddon!: FitAddon
+  attachAddon!: AttachAddon
+  pid!: string
+  socket!: WebSocket
+  terminal!: Terminal
 
   constructor(props: {}) {
     super(props)
@@ -19,11 +24,14 @@ export default class App extends React.Component<{}, {}> {
 
   componentDidMount() {
     this.connectToTerminal()
+    window.addEventListener('resize', () => {
+      this.fit()
+    })
   }
 
   async connectToTerminal() {
-    const pid = await this.createTerminal()
-    const terminal = new Terminal({
+    this.pid = await this.createTerminal()
+    this.terminal = new Terminal({
       theme: {
         background: '#212121',
         foreground: '#cfcfc1',
@@ -47,21 +55,34 @@ export default class App extends React.Component<{}, {}> {
       fontSize: 12,
       fontFamily: 'Roboto Mono, monospace'
     })
-    const fitAddon = new FitAddon()
-    const url = `${WS_BASE}/terminals/${pid}`
-    const socket = new WebSocket(url)
-    const attachAddon = new AttachAddon(socket)
-    terminal.loadAddon(fitAddon)
-    terminal.loadAddon(attachAddon)
-    terminal.loadAddon(new WebLinksAddon())
-    terminal.open(this.terminalElement.current!)
-    terminal.focus()
-    fitAddon.fit()
+    this.fitAddon = new FitAddon()
+    this.socket = new WebSocket(this.wsURL)
+    this.attachAddon = new AttachAddon(this.socket)
+    this.terminal.loadAddon(this.fitAddon)
+    this.terminal.loadAddon(this.attachAddon)
+    this.terminal.loadAddon(new WebLinksAddon())
+    this.terminal.open(this.terminalElement.current!)
+    this.terminal.focus()
+    await this.fit()
   }
 
   async createTerminal(): Promise<string> {
     const res = await fetch(`${HTTP_BASE}/terminals`, { method: 'POST' })
     return res.text()
+  }
+
+  async fit() {
+    this.fitAddon.fit()
+    const url = `${this.httpURL}/size?cols=${this.terminal.cols}&rows=${this.terminal.rows}`
+    await fetch(url, { method: 'POST' })
+  }
+
+  get wsURL() {
+    return `${WS_BASE}/terminals/${this.pid}`
+  }
+
+  get httpURL() {
+    return `${HTTP_BASE}/terminals/${this.pid}`
   }
 
   render() {

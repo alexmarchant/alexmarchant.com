@@ -36,10 +36,10 @@ app.post('/terminals', (req, res) => {
 })
 
 app.post('/terminals/:pid/size', (req, res) => {
-  var pid = parseInt(req.params.pid),
-      cols = parseInt(req.query.cols),
-      rows = parseInt(req.query.rows),
-      term = terminals[pid]
+  const pid = parseInt(req.params.pid)
+  const cols = parseInt(req.query.cols)
+  const rows = parseInt(req.query.rows)
+  const term = terminals[pid]
 
   term.resize(cols, rows)
   console.log('Resized terminal ' + pid + ' to ' + cols + ' cols and ' + rows + ' rows.')
