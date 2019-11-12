@@ -23,8 +23,8 @@ jobs:
 
       # deploy the images
       - run: |
-        docker push alexmarchant/alexmarchant-client
-        docker push alexmarchant/alexmarchant-sandbox
+          docker push alexmarchant/alexmarchant-client
+          docker push alexmarchant/alexmarchant-sandbox
 
       # install kubeconfig using doctl
       - run: doctl kubernetes cluster kubeconfig save personal-cluster
