@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+orbs:
+  doctl-orb: digitalocean/cli@0.1.1
+  kube-orb: circleci/kubernetes@0.10.0
 jobs:
   build:
     machine: true
@@ -7,6 +10,10 @@ jobs:
 
       # login with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      # pull existing images (cache layers)
+      - run: docker pull alexmarchant/alexmarchant-client
+      - run: docker pull alexmarchant/alexmarchant-sandbox
 
       # build the application images
       - run: cd client && docker build -t alexmarchant/alexmarchant-client .
@@ -17,16 +24,10 @@ jobs:
       - run: docker push alexmarchant/alexmarchant-sandbox
 
       # install kubectl
-      - run: |
-          sudo apt-get update && sudo apt-get install -y apt-transport-https
-          curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-          echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-          sudo apt-get update
-          sudo apt-get install -y kubectl
+      - kube-orb/install-kubectl
 
-      # auth kubernetes
-      - run: snap install doctl && snap connect doctl:kube-config
-      - run: doctl auth init --access-token $DO_ACCESS_TOKEN
+      # install kubeconfig using doctl
+      - doctl-orb/install_and_initialize_cli
       - run: doctl kubernetes cluster kubeconfig save personal-cluster
 
       # tell kubernetes to pull latest image
