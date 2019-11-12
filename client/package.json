@@ -1,0 +1,47 @@
+{
+  "name": "alexmarchant-client",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "forever-monitor": "^1.7.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "3.2.0",
+    "xterm": "^4.2.0-vscode1",
+    "xterm-addon-attach": "^0.3.0",
+    "xterm-addon-fit": "^0.3.0",
+    "xterm-addon-search": "^0.3.0",
+    "xterm-addon-web-links": "^0.2.1",
+    "xterm-addon-webgl": "^0.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "static-server": "node static-file-server/forever.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
+    "eslint": "^6.6.0",
+    "typescript": "^3.7.2"
+  }
+}
