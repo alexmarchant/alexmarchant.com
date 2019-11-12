@@ -4,6 +4,7 @@ import 'xterm/css/xterm.css'
 import { Terminal } from 'xterm'
 import { AttachAddon } from 'xterm-addon-attach'
 import { FitAddon } from 'xterm-addon-fit'
+import { WebLinksAddon } from 'xterm-addon-web-links'
 
 const HTTP_BASE = document.location.href.includes('localhost') ? 'http://localhost:3002' : 'https://api.alexmarchant.com'
 const WS_BASE = HTTP_BASE.replace('http', 'ws')
@@ -52,6 +53,7 @@ export default class App extends React.Component<{}, {}> {
     const attachAddon = new AttachAddon(socket)
     terminal.loadAddon(fitAddon)
     terminal.loadAddon(attachAddon)
+    terminal.loadAddon(new WebLinksAddon())
     terminal.open(this.terminalElement.current!)
     terminal.focus()
     fitAddon.fit()
