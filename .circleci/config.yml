@@ -6,7 +6,12 @@ jobs:
   build:
     machine: true
     steps:
+      # checkout git
       - checkout
+      # install kubectl
+      - kube-orb/install-kubectl
+      # install doctl
+      - doctl-orb/install_and_initialize_cli
 
       # login with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -23,11 +28,7 @@ jobs:
       - run: docker push alexmarchant/alexmarchant-client
       - run: docker push alexmarchant/alexmarchant-sandbox
 
-      # install kubectl
-      - kube-orb/install-kubectl
-
       # install kubeconfig using doctl
-      - doctl-orb/install_and_initialize_cli
       - run: doctl kubernetes cluster kubeconfig save personal-cluster
 
       # tell kubernetes to pull latest image
