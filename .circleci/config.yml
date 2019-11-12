@@ -11,7 +11,9 @@ jobs:
       # install kubectl
       - kube-orb/install-kubectl
       # install doctl
-      # - doctl-orb/install_and_initialize_cli
+      - doctl-orb/install
+      - doctl-orb/initialize:
+          digitalocean-access-token: <<parameters.digitalocean-access-token>>
 
       # login with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
