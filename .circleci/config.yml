@@ -17,17 +17,14 @@ jobs:
       # login with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-      # pull existing images (cache layers)
-      - run: docker pull alexmarchant/alexmarchant-client
-      - run: docker pull alexmarchant/alexmarchant-sandbox
-
       # build the application images
       - run: cd client && docker build -t alexmarchant/alexmarchant-client .
       - run: cd sandbox && docker build -t alexmarchant/alexmarchant-sandbox .
 
       # deploy the images
-      - run: docker push alexmarchant/alexmarchant-client
-      - run: docker push alexmarchant/alexmarchant-sandbox
+      - run: |
+        docker push alexmarchant/alexmarchant-client
+        docker push alexmarchant/alexmarchant-sandbox
 
       # install kubeconfig using doctl
       - run: doctl kubernetes cluster kubeconfig save personal-cluster
